@@ -1,0 +1,3 @@
+export const GET_MARKET_LIST_TR = "GET_MARKET_LIST_TR";
+
+export const SET_MARKET_LIST_TR = "SET_MARKET_LIST_TR";
