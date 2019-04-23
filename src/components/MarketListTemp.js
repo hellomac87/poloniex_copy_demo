@@ -33,7 +33,7 @@ const MarketListTemp = ({ obj, marketName }) => {
             <li key={values.id} className={cx("item")}>
               <div>{coinName}</div>
               <span> {values.last}</span>
-              <span> {values.percentChange} %</span>
+              <span key={values.percentChange}> {values.percentChange} %</span>
 
               <span> {values.high24hr}</span>
               <span> {values.low24hr}</span>
