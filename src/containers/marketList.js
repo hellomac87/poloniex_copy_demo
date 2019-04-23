@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getMarketListTR } from "../store/marketList/action";
+import {
+  getMarketListTR,
+  listenMarketListRDS
+} from "../store/marketList/action";
+import MarketListTemp from "../components/MarketListTemp";
 
 class MarketList extends Component {
   state = {
@@ -8,11 +12,9 @@ class MarketList extends Component {
   };
 
   async componentDidMount() {
-    console.log("loading start");
-    const { getMarketListTR } = this.props;
+    const { getMarketListTR, listenMarketListRDS } = this.props;
     getMarketListTR();
-
-    console.log("loading end");
+    listenMarketListRDS();
   }
 
   onTabClack = tabName => {
@@ -23,7 +25,14 @@ class MarketList extends Component {
 
   render() {
     const { tab } = this.state;
-    const { marketList } = this.props;
+    const {
+      marketList,
+      marketList_BTC,
+      marketList_ETH,
+      marketList_USDC,
+      marketList_USDT,
+      marketList_XMR
+    } = this.props;
     const { onTabClack } = this;
 
     return (
@@ -35,90 +44,80 @@ class MarketList extends Component {
           <li onClick={() => onTabClack("USDT")}>USDT</li>
           <li onClick={() => onTabClack("XMR")}>XMR</li>
         </ul>
-        {tab === "BTC" && (
-          <React.Fragment>
-            <h1>BTC</h1>
-            <ul>
-              {Object.entries(marketList.market_BTC).map((l, i) => {
-                const marketName = l[0].split("_")[0];
-                const coinName = l[0].split("_")[1];
-                const values = l[1];
 
-                return (
-                  <li key={i}>
-                    <div>{coinName}</div>
-                    <div>
-                      <span>baseVolume: {values.baseVolume}</span> <br />
-                      <span>high24hr: {values.high24hr}</span> <br />
-                      <span>highestBid: {values.highestBid}</span> <br />
-                      {/* <span>id: {values.id}</span> <br /> */}
-                      {/* <span>isFrozen: {values.isFrozen}</span> <br /> */}
-                      <span>last: {values.last}</span>
-                      <br />
-                      <span>low24hr: {values.low24hr}</span> <br />
-                      <span>lowestAsk: {values.lowestAsk}</span> <br />
-                      <span>percentChange: {values.percentChange} %</span>{" "}
-                      <br />
-                      <span>quoteVolume: {values.quoteVolume}</span>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </React.Fragment>
-        )}
-
-        {tab === "ETH" && (
-          <React.Fragment>
-            <h1>ETH</h1>
-            <ul>
-              {Object.entries(marketList.market_ETH).map((l, i) => {
-                const marketName = l[0].split("_")[0];
-                const coinName = l[0].split("_")[1];
-                const values = l[1];
-
-                return (
-                  <li key={i}>
-                    <div>{coinName}</div>
-                    <div>
-                      <span>{values.baseVolume}</span>
-                      <span>{values.high24hr}</span>
-                      <span>{values.highestBid}</span>
-                      <span>{values.id}</span>
-                      <span>{values.isFrozen}</span>
-                      <span>{values.last}</span>
-                      <span>{values.low24hr}</span>
-                      <span>{values.lowestAsk}</span>
-                      <span>{values.percentChange}</span>
-                      <span>{values.quoteVolume}</span>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </React.Fragment>
-        )}
+        <MarketListTemp obj={marketList_BTC} marketName={"BTC"} />
+        <MarketListTemp obj={marketList_ETH} marketName={"ETH"} />
+        <MarketListTemp obj={marketList_USDC} marketName={"USDC"} />
+        <MarketListTemp obj={marketList_USDT} marketName={"USDT"} />
+        <MarketListTemp obj={marketList_XMR} marketName={"XMR"} />
       </div>
     );
   }
 }
 
-// const list = () => {
-//   return(
-
-//   )
-// }
-
 const mapStateToProps = state => {
   return {
-    marketList: state.marketList
+    marketList: state.marketList,
+    marketList_BTC: bySort(
+      filterByMarketName(state.marketList.market_byId, "BTC"),
+      "baseVolume"
+    ),
+    marketList_ETH: bySort(
+      filterByMarketName(state.marketList.market_byId, "ETH"),
+      "baseVolume"
+    ),
+    marketList_USDC: bySort(
+      filterByMarketName(state.marketList.market_byId, "USDC"),
+      "baseVolume"
+    ),
+    marketList_USDT: bySort(
+      filterByMarketName(state.marketList.market_byId, "USDT"),
+      "baseVolume"
+    ),
+    marketList_XMR: bySort(
+      filterByMarketName(state.marketList.market_byId, "XMR"),
+      "baseVolume"
+    )
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getMarketListTR: () => dispatch(getMarketListTR())
+    getMarketListTR: () => dispatch(getMarketListTR()),
+    listenMarketListRDS: () => dispatch(listenMarketListRDS())
   };
+};
+
+// const bySort
+const bySort = (obj, sortType) => {
+  const arr = Object.entries(obj);
+  const newObj = {};
+
+  arr.sort(function(a, b) {
+    return b[1][sortType] - a[1][sortType];
+  });
+
+  arr.forEach(item => {
+    newObj[item[0]] = item[1];
+  });
+
+  return newObj; // returns array
+};
+
+const filterByMarketName = (state, filter) => {
+  const obj = {};
+
+  Object.entries(state).forEach((item, index) => {
+    const marketName = item[1].pairName.split("_")[0];
+    const coinName = item[1].pairName.split("_")[1];
+    const marketValue = item[1];
+
+    if (marketName === filter) {
+      obj[coinName] = marketValue;
+    }
+  });
+
+  return obj;
 };
 
 export default connect(

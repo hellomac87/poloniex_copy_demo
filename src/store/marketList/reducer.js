@@ -1,74 +1,64 @@
-import { GetMarketListTR, SET_MARKET_LIST_TR } from "./type";
+import produce from "immer";
+import {
+  GetMarketListTR,
+  SET_MARKET_LIST_TR,
+  SET_MARKET_LIST_RDS
+} from "./type";
 
 const initialState = {
-  market_BTC: {},
-  market_ETH: {},
-  market_USDC: {},
-  market_USDT: {},
-  market_XMR: {}
+  market_ALL: {},
+  market_byId: {}
 };
 
-const marketList = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_MARKET_LIST_TR:
-      return {
-        ...state,
-        market_BTC: bySort(
-          filterByMarketName(action.payload, "BTC"),
-          "baseVolume"
-        ),
-        market_ETH: bySort(
-          filterByMarketName(action.payload, "ETH"),
-          "baseVolume"
-        ),
-        market_USDC: bySort(
-          filterByMarketName(action.payload, "USDC"),
-          "baseVolume"
-        ),
-        market_USDT: bySort(
-          filterByMarketName(action.payload, "USDT"),
-          "baseVolume"
-        ),
-        market_XMR: bySort(
-          filterByMarketName(action.payload, "XMR"),
-          "baseVolume"
-        )
-      };
-    default:
-      return state;
-  }
-};
+const marketList = (state = initialState, action) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case SET_MARKET_LIST_TR:
+        draft.market_ALL = action.payload;
+        draft.market_byId = byId(action.payload);
+      case SET_MARKET_LIST_RDS:
+        // 0 currency pair id,
+        // 1 last trade price,
+        // 2 lowest ask,
+        // 3 highest bid,
+        // 4 percent change in last 24 hours,
+        // 5 base currency volume in last 24 hours,
+        // 6 quote currency volume in last 24 hours,
+        // 7 is frozen,
+        // 8 highest trade price in last 24 hours,
+        // 9 lowest trade price in last 24 hours,
 
-// const bySort
-const bySort = (obj, sortType) => {
-  const arr = Object.entries(obj);
-  const newObj = {};
-
-  arr.sort(function(a, b) {
-    return b[1][sortType] - a[1][sortType];
-  });
-
-  arr.forEach(item => {
-    newObj[item[0]] = item[1];
-  });
-
-  return newObj; // returns array
-};
-
-const filterByMarketName = (payload, filter) => {
-  const obj = {};
-
-  Object.entries(payload).forEach((item, index) => {
-    const marketName = item[0].split("_")[0];
-    // const coinName = item[0].split("_")[1];
-    const marketValue = item[1];
-
-    if (marketName === filter) {
-      obj[item[0]] = marketValue;
+        const id = action.payload[0];
+        const baseVolume = action.payload[5];
+        const high24hr = action.payload[8];
+        // const highestBid = action.payload[3];
+        const last = action.payload[1];
+        const low24hr = action.payload[9];
+        // const lowestAsk = action.payload[2];
+        const percentChange = action.payload[4];
+        // const quoteVolume = action.payload[6];
+        try {
+          console.log(action.payload);
+          draft.market_byId[id].baseVolume = baseVolume;
+          draft.market_byId[id].high24hr = high24hr;
+          // draft.market_byId[id].highestBid = highestBid;
+          draft.market_byId[id].last = last;
+          draft.market_byId[id].low24hr = low24hr;
+          // draft.market_byId[id].lowestAsk = lowestAsk;
+          draft.market_byId[id].percentChange = percentChange;
+          // draft.market_byId[id].quoteVolume = quoteVolume;
+        } catch {}
     }
   });
 
-  return obj;
+const byId = state => {
+  const newState = {};
+  Object.entries(state).forEach(item => {
+    newState[item[1].id] = item[1];
+    newState[item[1].id].pairName = item[0];
+  });
+
+  return newState;
 };
 
 export default marketList;
