@@ -4,10 +4,12 @@ import {
   SET_MARKET_LIST_TR,
   SET_MARKET_LIST_RDS
 } from "./type";
-
+import { byId } from "./reselector";
 const initialState = {
   market_ALL: {},
-  market_byId: {}
+  market_byId: {},
+  sortType: "baseVolume",
+  orderType: "asc"
 };
 
 const marketList = (state = initialState, action) =>
@@ -50,15 +52,5 @@ const marketList = (state = initialState, action) =>
         } catch {}
     }
   });
-
-const byId = state => {
-  const newState = {};
-  Object.entries(state).forEach(item => {
-    newState[item[1].id] = item[1];
-    newState[item[1].id].pairName = item[0];
-  });
-
-  return newState;
-};
 
 export default marketList;

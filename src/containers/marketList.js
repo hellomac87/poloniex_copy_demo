@@ -1,9 +1,18 @@
 import React, { Component } from "react";
+
+// redux
 import { connect } from "react-redux";
+
+// action
 import {
   getMarketListTR,
   listenMarketListRDS
 } from "../store/marketList/action";
+
+// reselector
+import { getMarketByMarketName, bySort } from "../store/marketList/reselector";
+
+// components
 import MarketListTemp from "../components/MarketListTemp";
 
 class MarketList extends Component {
@@ -59,24 +68,29 @@ const mapStateToProps = state => {
   return {
     marketList: state.marketList,
     marketList_BTC: bySort(
-      filterByMarketName(state.marketList.market_byId, "BTC"),
-      "baseVolume"
+      getMarketByMarketName(state.marketList, "BTC"),
+      state.marketList.sortType,
+      state.marketList.orderType
     ),
     marketList_ETH: bySort(
-      filterByMarketName(state.marketList.market_byId, "ETH"),
-      "baseVolume"
+      getMarketByMarketName(state.marketList, "ETH"),
+      state.marketList.sortType,
+      state.marketList.orderType
     ),
     marketList_USDC: bySort(
-      filterByMarketName(state.marketList.market_byId, "USDC"),
-      "baseVolume"
+      getMarketByMarketName(state.marketList, "USDC"),
+      state.marketList.sortType,
+      state.marketList.orderType
     ),
     marketList_USDT: bySort(
-      filterByMarketName(state.marketList.market_byId, "USDT"),
-      "baseVolume"
+      getMarketByMarketName(state.marketList, "USDT"),
+      state.marketList.sortType,
+      state.marketList.orderType
     ),
     marketList_XMR: bySort(
-      filterByMarketName(state.marketList.market_byId, "XMR"),
-      "baseVolume"
+      getMarketByMarketName(state.marketList, "XMR"),
+      state.marketList.sortType,
+      state.marketList.orderType
     )
   };
 };
@@ -86,38 +100,6 @@ const mapDispatchToProps = dispatch => {
     getMarketListTR: () => dispatch(getMarketListTR()),
     listenMarketListRDS: () => dispatch(listenMarketListRDS())
   };
-};
-
-// const bySort
-const bySort = (obj, sortType) => {
-  const arr = Object.entries(obj);
-  const newObj = {};
-
-  arr.sort(function(a, b) {
-    return b[1][sortType] - a[1][sortType];
-  });
-
-  arr.forEach(item => {
-    newObj[item[0]] = item[1];
-  });
-
-  return newObj; // returns array
-};
-
-const filterByMarketName = (state, filter) => {
-  const obj = {};
-
-  Object.entries(state).forEach((item, index) => {
-    const marketName = item[1].pairName.split("_")[0];
-    const coinName = item[1].pairName.split("_")[1];
-    const marketValue = item[1];
-
-    if (marketName === filter) {
-      obj[coinName] = marketValue;
-    }
-  });
-
-  return obj;
 };
 
 export default connect(

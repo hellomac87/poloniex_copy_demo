@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6008px" height="3071px" viewBox="0 0 6008 3071" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>mountain-bg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.1 0.8 6007.8 0.8 6007.8 3071 0.1 3071"></polygon>
+        <linearGradient x1="-0.724336274%" y1="76.4312128%" x2="62.9158243%" y2="56.0416443%" id="mountainGradient-3">
+            <stop stop-color="#2B9697" offset="0%"></stop>
+            <stop stop-color="#2B9697" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="66.552286%" y1="52.0835732%" x2="-37.9757473%" y2="89.2830202%" id="mountainGradient-4">
+            <stop stop-color="#2B9697" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#2B9697" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="88.8998518%" y1="50.1010633%" x2="10.0246876%" y2="80.5356158%" id="mountainGradient-5">
+            <stop stop-color="#2B9697" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#2B9697" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="66.1230189%" y1="101.821722%" x2="33.6399691%" y2="68.4908852%" id="mountainGradient-6">
+            <stop stop-color="#2B9697" offset="0%"></stop>
+            <stop stop-color="#2B9697" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="81.7050866%" y1="83.1812167%" x2="54.9394054%" y2="71.3210353%" id="mountainGradient-7">
+            <stop stop-color="#2B9697" offset="0%"></stop>
+            <stop stop-color="#2B9697" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="70.4085372%" y1="66.9380591%" x2="53.3102187%" y2="62.3491384%" id="mountainGradient-8">
+            <stop stop-color="#2B9697" offset="0%"></stop>
+            <stop stop-color="#2B9697" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mountain-bg">
+            <g id="a-link" fill="#062A2C" fill-rule="nonzero">
+                <polygon id="a" points="0.1 0.8 6007.8 0.8 6007.8 3071 0.1 3071"></polygon>
+            </g>
+            <g id="Clipped">
+                <mask id="mountain-mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="a"></g>
+                <g id="Group" mask="url(#mountain-mask-2)" fill-rule="nonzero">
+                    <g transform="translate(-2487.000000, -2281.000000)" id="Shape">
+                        <polyline fill="url(#mountainGradient-3)" opacity="0.5" points="7590.3 1639.1 3878 5456 7785.6 6290.4 8537.3 1855.6 7590.3 1639.1"></polyline>
+                        <polyline fill="url(#mountainGradient-4)" opacity="0.5" points="8240.9 1785.3 4528.5 5602.2 7313.7 6197 9051.7 5612 8859.6 2334.9 8240.9 1785.3"></polyline>
+                        <polyline fill="url(#mountainGradient-5)" opacity="0.5" points="8976.2 2062.4 5399.5 5612.7 8201 6125.2 8825.1 2714.2 8976.2 2062.4"></polyline>
+                        <polyline fill="url(#mountainGradient-6)" opacity="0.2" points="1453.6 1004 5570 5868.3 954.7 6478.6 396 1161.9 1376.2 1137.3"></polyline>
+                        <polyline fill="url(#mountainGradient-7)" opacity="0.5" points="2311.4 2880.9 5022.6 6085 687.3 6540.7 0.7 0.6 2311.4 2880.9"></polyline>
+                        <polyline fill="url(#mountainGradient-8)" opacity="0.5" points="2103.3 3242.7 4814.5 6446.8 797 6767.5 110.4 227.4 2421.1 3107.7"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
