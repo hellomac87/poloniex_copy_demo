@@ -1,0 +1,28 @@
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  width: 90%;
+  margin: 0 5% 5px 5%;
+  list-style: none;
+  background: #25252b;
+  border: 1px solid #0f0f11;
+  border-radius: 5px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 40px;
+  color: #fff;
+  font-size: 1.2rem;
+  background: transparent;
+  cursor: pointer;
+
+  &.active {
+    background: #19191e;
+  }
+}

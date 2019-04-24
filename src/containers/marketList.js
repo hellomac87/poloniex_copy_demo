@@ -14,6 +14,7 @@ import { getMarketByMarketName, bySort } from "../store/marketList/reselector";
 
 // components
 import MarketListTemp from "../components/MarketListTemp";
+import Tab from "../components/Tab";
 
 class MarketList extends Component {
   state = {
@@ -26,7 +27,7 @@ class MarketList extends Component {
     listenMarketListRDS();
   }
 
-  onTabClack = tabName => {
+  onTabClick = tabName => {
     this.setState({
       tab: tabName
     });
@@ -42,17 +43,11 @@ class MarketList extends Component {
       marketList_USDT,
       marketList_XMR
     } = this.props;
-    const { onTabClack } = this;
+    const { onTabClick } = this;
 
     return (
       <div>
-        <ul>
-          <li onClick={() => onTabClack("BTC")}>BTC</li>
-          <li onClick={() => onTabClack("ETH")}>ETH</li>
-          <li onClick={() => onTabClack("USDC")}>USDC</li>
-          <li onClick={() => onTabClack("USDT")}>USDT</li>
-          <li onClick={() => onTabClack("XMR")}>XMR</li>
-        </ul>
+        <Tab onTabClick={onTabClick} tab={tab} />
 
         {tab === "BTC" && (
           <MarketListTemp obj={marketList_BTC} marketName={"BTC"} />

@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const MarketListTemp = ({ obj, marketName }) => {
   return (
     <div className={cx("container")}>
-      <h1>{marketName}</h1>
+      <h1 className={cx("marketName")}>{marketName} Market</h1>
       <ul className={cx("header")}>
         <li>coinName</li>
         <li>last price</li>
@@ -33,7 +33,15 @@ const MarketListTemp = ({ obj, marketName }) => {
             <li key={values.id} className={cx("item")}>
               <div>{coinName}</div>
               <span> {values.last}</span>
-              <span key={values.percentChange}> {values.percentChange} %</span>
+              <span
+                className={cx(
+                  values.percentChange > 0 && "up",
+                  values.percentChange < 0 && "down"
+                )}
+              >
+                {" "}
+                {values.percentChange} %
+              </span>
 
               <span> {values.high24hr}</span>
               <span> {values.low24hr}</span>
