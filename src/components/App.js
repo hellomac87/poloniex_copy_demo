@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import MarketList from "../containers/marketList";
 import Banner from "./Banner";
+import Footer from "./Footer";
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
       <React.Fragment>
         <Banner />
         <MarketList />
+        <Footer />
       </React.Fragment>
     );
   }
