@@ -12,6 +12,8 @@ html {
 }
 
 body {
+  width: 100%;
+  min-width: 768px;
   background: #19191e;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
