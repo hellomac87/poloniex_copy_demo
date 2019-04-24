@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 
 import MarketList from "../containers/marketList";
+import Banner from "./Banner";
 
 class App extends Component {
   render() {
-    return <MarketList />;
+    return (
+      <React.Fragment>
+        <Banner />
+        <MarketList />
+      </React.Fragment>
+    );
   }
 }
 
