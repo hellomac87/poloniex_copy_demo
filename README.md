@@ -61,9 +61,12 @@ Reference url : [https://poloniex.com/](https://poloniex.com/)
 ## reselect
 
 - 고민했던 것들
+  - 데이터 가공
   - 언제, 어디서, reselect 해야하는가?
 
 [https://redux.js.org/recipes/computing-derived-data](https://redux.js.org/recipes/computing-derived-data)
+
+[https://medium.com/@ljs0705/redux-reselect-490f9acc1090](https://medium.com/@ljs0705/redux-reselect-490f9acc1090)
 
 [https://github.com/reduxjs/reselect](https://github.com/reduxjs/reselect)
 
