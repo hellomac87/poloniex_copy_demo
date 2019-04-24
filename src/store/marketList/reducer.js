@@ -4,10 +4,11 @@ import {
   SET_MARKET_LIST_TR,
   SET_MARKET_LIST_RDS
 } from "./type";
-import { byId } from "./reselector";
+import { byId, allIds } from "./reselector";
 const initialState = {
   market_ALL: {},
   market_byId: {},
+  market_allIds: [],
   sortType: "baseVolume",
   orderType: "asc"
 };
@@ -18,6 +19,7 @@ const marketList = (state = initialState, action) =>
       case SET_MARKET_LIST_TR:
         draft.market_ALL = action.payload;
         draft.market_byId = byId(action.payload);
+        draft.market_allIds = allIds(action.payload);
       case SET_MARKET_LIST_RDS:
         // 0 currency pair id,
         // 1 last trade price,
@@ -40,7 +42,7 @@ const marketList = (state = initialState, action) =>
         const percentChange = action.payload[4];
         // const quoteVolume = action.payload[6];
         try {
-          console.log(action.payload);
+          // console.log(action.payload);
           draft.market_byId[id].baseVolume = baseVolume;
           draft.market_byId[id].high24hr = high24hr;
           // draft.market_byId[id].highestBid = highestBid;

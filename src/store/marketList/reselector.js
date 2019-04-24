@@ -13,6 +13,17 @@ export const byId = createSelector(
   }
 );
 
+export const allIds = createSelector(
+  state => state,
+  state => {
+    const arr = [];
+    Object.entries(state).forEach(item => {
+      arr.push(item[1].id);
+    });
+    return arr;
+  }
+);
+
 export const bySort = createSelector(
   (state, sortType, orderType) => state,
   (state, sortType, orderType) => sortType,

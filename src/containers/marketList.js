@@ -54,11 +54,21 @@ class MarketList extends Component {
           <li onClick={() => onTabClack("XMR")}>XMR</li>
         </ul>
 
-        <MarketListTemp obj={marketList_BTC} marketName={"BTC"} />
-        <MarketListTemp obj={marketList_ETH} marketName={"ETH"} />
-        <MarketListTemp obj={marketList_USDC} marketName={"USDC"} />
-        <MarketListTemp obj={marketList_USDT} marketName={"USDT"} />
-        <MarketListTemp obj={marketList_XMR} marketName={"XMR"} />
+        {tab === "BTC" && (
+          <MarketListTemp obj={marketList_BTC} marketName={"BTC"} />
+        )}
+        {tab === "ETH" && (
+          <MarketListTemp obj={marketList_ETH} marketName={"ETH"} />
+        )}
+        {tab === "USDC" && (
+          <MarketListTemp obj={marketList_USDC} marketName={"USDC"} />
+        )}
+        {tab === "USDT" && (
+          <MarketListTemp obj={marketList_USDT} marketName={"USDT"} />
+        )}
+        {tab === "XMR" && (
+          <MarketListTemp obj={marketList_XMR} marketName={"XMR"} />
+        )}
       </div>
     );
   }
