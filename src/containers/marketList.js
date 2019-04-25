@@ -72,7 +72,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     marketList: getMarketList(state.marketList, marketFilter),
     marketName: marketFilter,
-    orderType: state.marketList.orderType,
+    orderType: state.marketList.orderTypeIsAsc,
     sortType: state.marketList.sortType
   };
 };

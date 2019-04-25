@@ -27,7 +27,7 @@ export const allIds = createSelector(
 const marketListById = state => state.market_byId;
 const marketListByMarketName = (state, marketFilter) => marketFilter;
 const marketListSortType = state => state.sortType;
-const marketListOrderType = state => state.orderType;
+const marketListOrderType = state => state.orderTypeIsAsc;
 
 export const getMarketList = createSelector(
   [
@@ -36,7 +36,7 @@ export const getMarketList = createSelector(
     marketListSortType,
     marketListOrderType
   ],
-  (market_byId, marketFilter, sortType, orderType) => {
+  (market_byId, marketFilter, sortType, orderTypeIsAsc) => {
     const marketFilteredObj = {};
     Object.entries(market_byId).forEach(item => {
       const marketName = item[1].pairName.split("_")[0];
@@ -49,13 +49,9 @@ export const getMarketList = createSelector(
     });
 
     return Object.entries(marketFilteredObj).sort((a, b) => {
-      if (orderType === "asc") {
-        return b[1][sortType] - a[1][sortType];
-      } else if (orderType === "desc") {
-        return a[1][sortType] - b[1][sortType];
-      } else {
-        return 0;
-      }
+      return orderTypeIsAsc
+        ? b[1][sortType] - a[1][sortType]
+        : a[1][sortType] - b[1][sortType];
     });
   }
 );

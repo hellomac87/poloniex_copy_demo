@@ -25,7 +25,7 @@ const MarketListTemp = ({
             className={cx(
               "arrow",
               sortType === "last" && "active",
-              orderType === "desc" && "down"
+              !orderType && "down"
             )}
           />
         </li>
@@ -35,7 +35,7 @@ const MarketListTemp = ({
             className={cx(
               "arrow",
               sortType === "percentChange" && "active",
-              orderType === "desc" && "down"
+              !orderType && "down"
             )}
           />
         </li>
@@ -45,7 +45,7 @@ const MarketListTemp = ({
             className={cx(
               "arrow",
               sortType === "high24hr" && "active",
-              orderType === "desc" && "down"
+              !orderType && "down"
             )}
           />
         </li>
@@ -55,7 +55,7 @@ const MarketListTemp = ({
             className={cx(
               "arrow",
               sortType === "low24hr" && "active",
-              orderType === "desc" && "down"
+              !orderType && "down"
             )}
           />
         </li>
@@ -68,7 +68,7 @@ const MarketListTemp = ({
             className={cx(
               "arrow",
               sortType === "baseVolume" && "active",
-              orderType === "desc" && "down"
+              !orderType && "down"
             )}
           />
         </li>

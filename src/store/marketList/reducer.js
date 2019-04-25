@@ -6,7 +6,7 @@ const initialState = {
   market_byId: {},
   market_allIds: [],
   sortType: "baseVolume",
-  orderType: "asc"
+  orderTypeIsAsc: true
 };
 
 const marketList = (state = initialState, action) =>
@@ -53,11 +53,7 @@ const marketList = (state = initialState, action) =>
 
       case "UPDATE_SORT_TYPE":
         draft.sortType = action.sortType;
-        if (state.orderType === "asc") {
-          draft.orderType = "desc";
-        } else {
-          draft.orderType = "asc";
-        }
+        draft.orderTypeIsAsc = !state.orderTypeIsAsc;
     }
   });
 
