@@ -19,7 +19,15 @@ const MarketListTemp = ({
         <li>
           <span>ASSET</span> <span className={cx("arrow")} />
         </li>
-        <li onClick={() => onSortClick("last")}>
+        <li
+          tabIndex={0}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              onSortClick("last");
+            }
+          }}
+          onClick={() => onSortClick("last")}
+        >
           <span>LAST PRICE</span>{" "}
           <span
             className={cx(
@@ -29,7 +37,15 @@ const MarketListTemp = ({
             )}
           />
         </li>
-        <li onClick={() => onSortClick("percentChange")}>
+        <li
+          tabIndex={0}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              onSortClick("percentChange");
+            }
+          }}
+          onClick={() => onSortClick("percentChange")}
+        >
           <span>24H CHANGE</span>{" "}
           <span
             className={cx(
@@ -39,7 +55,15 @@ const MarketListTemp = ({
             )}
           />
         </li>
-        <li onClick={() => onSortClick("high24hr")}>
+        <li
+          tabIndex={0}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              onSortClick("high24hr");
+            }
+          }}
+          onClick={() => onSortClick("high24hr")}
+        >
           <span>24H HIGH</span>{" "}
           <span
             className={cx(
@@ -49,7 +73,15 @@ const MarketListTemp = ({
             )}
           />
         </li>
-        <li onClick={() => onSortClick("low24hr")}>
+        <li
+          tabIndex={0}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              onSortClick("low24hr");
+            }
+          }}
+          onClick={() => onSortClick("low24hr")}
+        >
           <span>24H LOW</span>{" "}
           <span
             className={cx(
@@ -62,7 +94,15 @@ const MarketListTemp = ({
         {/* <li>highestBid</li> */}
         {/* <li>lowestAsk</li> */}
         {/* <li>quoteVolume</li> */}
-        <li onClick={() => onSortClick("baseVolume")}>
+        <li
+          tabIndex={0}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              onSortClick("baseVolume");
+            }
+          }}
+          onClick={() => onSortClick("baseVolume")}
+        >
           <span>24H VOLUME</span>{" "}
           <span
             className={cx(
