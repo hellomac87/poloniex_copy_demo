@@ -1,9 +1,5 @@
 import produce from "immer";
-import {
-  GetMarketListTR,
-  SET_MARKET_LIST_TR,
-  SET_MARKET_LIST_RDS
-} from "./type";
+import { SET_MARKET_LIST_TR, SET_MARKET_LIST_RDS } from "./type";
 import { byId, allIds } from "./reselector";
 const initialState = {
   market_ALL: {},

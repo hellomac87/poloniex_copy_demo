@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import queryString from "query-string";
 
 // redux
 import { connect } from "react-redux";
@@ -10,58 +12,55 @@ import {
 } from "../store/marketList/action";
 
 // reselector
-import {
-  getMarketList,
-  getMarketByMarketName,
-  bySort
-} from "../store/marketList/reselector";
+import { getMarketList } from "../store/marketList/reselector";
 
 // components
 import MarketListTemp from "../components/MarketListTemp";
+
 import Tab from "../components/Tab";
+import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 
 class MarketList extends Component {
-  state = {
-    tab: "BTC" // BTC,ETH,USDC,USDT,XMR
-  };
-
   async componentDidMount() {
     const { getMarketListTR, listenMarketListRDS } = this.props;
     getMarketListTR();
     listenMarketListRDS();
   }
 
-  onTabClick = tabName => {
-    this.setState({
-      tab: tabName
-    });
+  onTabClick = marketName => {
+    const { history } = this.props;
+    history.push(`/?market=${marketName}`);
   };
 
   render() {
-    const { tab } = this.state;
-    const {
-      marketList,
-      marketList_BTC,
-      marketList_ETH,
-      marketList_USDC,
-      marketList_USDT,
-      marketList_XMR
-    } = this.props;
+    const { marketList, marketName } = this.props;
     const { onTabClick } = this;
 
     return (
       <div>
-        <Tab onTabClick={onTabClick} tab={tab} />
+        <Banner />
+        <Tab onTabClick={onTabClick} marketName={marketName} />
 
-        <MarketListTemp obj={marketList} />
+        <MarketListTemp marketList={marketList} />
+        <Footer />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+  // setting filter
+  const {
+    history: {
+      location: { search }
+    }
+  } = ownProps;
+  const { market: filter } = queryString.parse(search);
+  const marketFilter = filter || "BTC";
   return {
-    marketList: getMarketList(state.marketList, "BTC")
+    marketList: getMarketList(state.marketList, marketFilter),
+    marketName: marketFilter
   };
 };
 
@@ -75,4 +74,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MarketList);
+)(withRouter(MarketList));

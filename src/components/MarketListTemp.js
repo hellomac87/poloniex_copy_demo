@@ -5,26 +5,23 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const MarketListTemp = ({ obj, marketName }) => {
+const MarketListTemp = ({ marketList, marketName }) => {
   return (
     <div className={cx("container")}>
       <h1 className={cx("marketName")}>{marketName} Market</h1>
       <ul className={cx("header")}>
-        <li>coinName</li>
-        <li>last price</li>
-        <li>percentChange</li>
-
-        <li>high24hr</li>
-        <li>low24hr</li>
-
+        <li>ASSET</li>
+        <li>LAST PRICE</li>
+        <li>24H CHANGE</li>
+        <li>24H HIGH</li>
+        <li>24H LOW</li>
         {/* <li>highestBid</li> */}
         {/* <li>lowestAsk</li> */}
         {/* <li>quoteVolume</li> */}
-
-        <li>baseVolume</li>
+        <li>24H VOLUME</li>
       </ul>
       <ul className={cx("list")}>
-        {Object.entries(obj).map((l, i) => {
+        {marketList.map((l, i) => {
           // const marketName = l[0].split("_")[0];
           const coinName = l[0];
           const values = l[1];
@@ -40,7 +37,7 @@ const MarketListTemp = ({ obj, marketName }) => {
                 )}
               >
                 {" "}
-                {values.percentChange} %
+                {(values.percentChange * 100).toFixed(2)} %
               </span>
 
               <span> {values.high24hr}</span>
@@ -52,7 +49,7 @@ const MarketListTemp = ({ obj, marketName }) => {
               {/* <span> {values.lowestAsk}</span> */}
 
               {/* <span> {values.quoteVolume}</span> */}
-              <span> {values.baseVolume}</span>
+              <span> {parseInt(values.baseVolume).toFixed(3)}</span>
             </li>
           );
         })}

@@ -17,12 +17,13 @@
   justify-content: center;
   width: 20%;
   height: 40px;
+  border-radius: 3px;
   color: #fff;
   font-size: 1.2rem;
   background: transparent;
   cursor: pointer;
 
   &.active {
-    background: #19191e;
+    background: #00b0b1;
   }
 }

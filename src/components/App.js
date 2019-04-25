@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import MarketList from "../containers/marketList";
-import Banner from "./Banner";
-import Footer from "./Footer";
 
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <Banner />
-        <MarketList />
-        <Footer />
-      </React.Fragment>
+      <Router>
+        <Switch>
+          <Route exact path={"/"} component={MarketList} />
+        </Switch>
+      </Router>
     );
   }
 }
