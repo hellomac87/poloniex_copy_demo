@@ -16,6 +16,7 @@ const marketList = (state = initialState, action) =>
         draft.market_ALL = action.payload;
         draft.market_byId = byId(action.payload);
         draft.market_allIds = allIds(action.payload);
+        return;
       case SET_MARKET_LIST_RDS:
         // 0 currency pair id,
         // 1 last trade price,
@@ -48,6 +49,7 @@ const marketList = (state = initialState, action) =>
           draft.market_byId[id].percentChange = percentChange;
           // draft.market_byId[id].quoteVolume = quoteVolume;
         } catch {}
+        return;
     }
   });
 

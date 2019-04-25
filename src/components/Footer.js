@@ -11,8 +11,8 @@ const Footer = () => {
       <a
         className={cx("github")}
         href="https://github.com/hellomac87/poloniex_copy_demo"
-        target="_blank"
       />
+
       <span>github repository</span>
     </footer>
   );

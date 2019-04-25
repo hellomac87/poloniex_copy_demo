@@ -53,6 +53,8 @@ export const getMarketList = createSelector(
         return b[1][sortType] - a[1][sortType];
       } else if (orderType === "desc") {
         return a[1][sortType] - b[1][sortType];
+      } else {
+        return 0;
       }
     });
   }

@@ -22,7 +22,7 @@ export const getMarketListTR = () => async (dispatch, getState) => {
     "https://poloniex.com/public?command=returnTicker"
   );
 
-  console.log(payload);
+  // console.log(payload);
 
   dispatch(setMarketListTR(payload));
 };
