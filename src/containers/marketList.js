@@ -10,7 +10,11 @@ import {
 } from "../store/marketList/action";
 
 // reselector
-import { getMarketByMarketName, bySort } from "../store/marketList/reselector";
+import {
+  getMarketList,
+  getMarketByMarketName,
+  bySort
+} from "../store/marketList/reselector";
 
 // components
 import MarketListTemp from "../components/MarketListTemp";
@@ -49,54 +53,15 @@ class MarketList extends Component {
       <div>
         <Tab onTabClick={onTabClick} tab={tab} />
 
-        {tab === "BTC" && (
-          <MarketListTemp obj={marketList_BTC} marketName={"BTC"} />
-        )}
-        {tab === "ETH" && (
-          <MarketListTemp obj={marketList_ETH} marketName={"ETH"} />
-        )}
-        {tab === "USDC" && (
-          <MarketListTemp obj={marketList_USDC} marketName={"USDC"} />
-        )}
-        {tab === "USDT" && (
-          <MarketListTemp obj={marketList_USDT} marketName={"USDT"} />
-        )}
-        {tab === "XMR" && (
-          <MarketListTemp obj={marketList_XMR} marketName={"XMR"} />
-        )}
+        <MarketListTemp obj={marketList} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    marketList: state.marketList,
-    marketList_BTC: bySort(
-      getMarketByMarketName(state.marketList, "BTC"),
-      state.marketList.sortType,
-      state.marketList.orderType
-    ),
-    marketList_ETH: bySort(
-      getMarketByMarketName(state.marketList, "ETH"),
-      state.marketList.sortType,
-      state.marketList.orderType
-    ),
-    marketList_USDC: bySort(
-      getMarketByMarketName(state.marketList, "USDC"),
-      state.marketList.sortType,
-      state.marketList.orderType
-    ),
-    marketList_USDT: bySort(
-      getMarketByMarketName(state.marketList, "USDT"),
-      state.marketList.sortType,
-      state.marketList.orderType
-    ),
-    marketList_XMR: bySort(
-      getMarketByMarketName(state.marketList, "XMR"),
-      state.marketList.sortType,
-      state.marketList.orderType
-    )
+    marketList: getMarketList(state.marketList, "BTC")
   };
 };
 
