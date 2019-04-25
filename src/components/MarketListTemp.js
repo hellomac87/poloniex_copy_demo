@@ -5,20 +5,73 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const MarketListTemp = ({ marketList, marketName }) => {
+const MarketListTemp = ({
+  marketList,
+  marketName,
+  orderType,
+  sortType,
+  onSortClick
+}) => {
   return (
     <div className={cx("container")}>
       <h1 className={cx("marketName")}>{marketName} Market</h1>
       <ul className={cx("header")}>
-        <li>ASSET</li>
-        <li>LAST PRICE</li>
-        <li>24H CHANGE</li>
-        <li>24H HIGH</li>
-        <li>24H LOW</li>
+        <li>
+          <span>ASSET</span> <span className={cx("arrow")} />
+        </li>
+        <li onClick={() => onSortClick("last")}>
+          <span>LAST PRICE</span>{" "}
+          <span
+            className={cx(
+              "arrow",
+              sortType === "last" && "active",
+              orderType === "desc" && "down"
+            )}
+          />
+        </li>
+        <li onClick={() => onSortClick("percentChange")}>
+          <span>24H CHANGE</span>{" "}
+          <span
+            className={cx(
+              "arrow",
+              sortType === "percentChange" && "active",
+              orderType === "desc" && "down"
+            )}
+          />
+        </li>
+        <li onClick={() => onSortClick("high24hr")}>
+          <span>24H HIGH</span>{" "}
+          <span
+            className={cx(
+              "arrow",
+              sortType === "high24hr" && "active",
+              orderType === "desc" && "down"
+            )}
+          />
+        </li>
+        <li onClick={() => onSortClick("low24hr")}>
+          <span>24H LOW</span>{" "}
+          <span
+            className={cx(
+              "arrow",
+              sortType === "low24hr" && "active",
+              orderType === "desc" && "down"
+            )}
+          />
+        </li>
         {/* <li>highestBid</li> */}
         {/* <li>lowestAsk</li> */}
         {/* <li>quoteVolume</li> */}
-        <li>24H VOLUME</li>
+        <li onClick={() => onSortClick("baseVolume")}>
+          <span>24H VOLUME</span>{" "}
+          <span
+            className={cx(
+              "arrow",
+              sortType === "baseVolume" && "active",
+              orderType === "desc" && "down"
+            )}
+          />
+        </li>
       </ul>
       <ul className={cx("list")}>
         {marketList.map((l, i) => {

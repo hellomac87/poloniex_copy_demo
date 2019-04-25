@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 // action
 import {
   getMarketListTR,
-  listenMarketListRDS
+  listenMarketListRDS,
+  updateSortType
 } from "../store/marketList/action";
 
 // reselector
@@ -33,16 +34,26 @@ class MarketList extends Component {
     history.push(`/?market=${marketName}`);
   };
 
+  onSortClick = sortType => {
+    const { updateSortType } = this.props;
+    updateSortType(sortType);
+  };
+
   render() {
-    const { marketList, marketName } = this.props;
-    const { onTabClick } = this;
+    const { marketList, marketName, orderType, sortType } = this.props;
+    const { onTabClick, onSortClick } = this;
 
     return (
       <div>
         <Banner />
         <Tab onTabClick={onTabClick} marketName={marketName} />
 
-        <MarketListTemp marketList={marketList} />
+        <MarketListTemp
+          marketList={marketList}
+          orderType={orderType}
+          sortType={sortType}
+          onSortClick={onSortClick}
+        />
         <Footer />
       </div>
     );
@@ -60,14 +71,17 @@ const mapStateToProps = (state, ownProps) => {
   const marketFilter = filter || "BTC";
   return {
     marketList: getMarketList(state.marketList, marketFilter),
-    marketName: marketFilter
+    marketName: marketFilter,
+    orderType: state.marketList.orderType,
+    sortType: state.marketList.sortType
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getMarketListTR: () => dispatch(getMarketListTR()),
-    listenMarketListRDS: () => dispatch(listenMarketListRDS())
+    listenMarketListRDS: () => dispatch(listenMarketListRDS()),
+    updateSortType: sortType => dispatch(updateSortType(sortType))
   };
 };
 

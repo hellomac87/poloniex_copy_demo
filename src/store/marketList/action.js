@@ -17,6 +17,13 @@ const setMarketListRDS = payload => {
   };
 };
 
+export const updateSortType = sortType => {
+  return {
+    type: "UPDATE_SORT_TYPE",
+    sortType
+  };
+};
+
 export const getMarketListTR = () => async (dispatch, getState) => {
   const { data: payload } = await axios.get(
     "https://poloniex.com/public?command=returnTicker"

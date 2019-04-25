@@ -50,6 +50,14 @@ const marketList = (state = initialState, action) =>
           // draft.market_byId[id].quoteVolume = quoteVolume;
         } catch {}
         return;
+
+      case "UPDATE_SORT_TYPE":
+        draft.sortType = action.sortType;
+        if (state.orderType === "asc") {
+          draft.orderType = "desc";
+        } else {
+          draft.orderType = "asc";
+        }
     }
   });
 
