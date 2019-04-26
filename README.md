@@ -35,6 +35,8 @@ MyCopyProjecy url : [https://stoic-raman-fa645a.netlify.com/](https://stoic-rama
 
 - 고민했던 것들
   - 비동기 처리 thunk or saga?
+  - saga : 어플리케이션의 복잡도가 증가할수록 활용도가 커짐 === 간단한 어플리케이션에서는 과도할 수 있음
+  - saga : 라이브러리에서 제공하는 유틸로 인해 비동기 처리를 동기식으로 제어하는데 섬세한 조정이 가능
 
 [https://github.com/reduxjs/redux-thunk](https://github.com/reduxjs/redux-thunk)
 
@@ -43,6 +45,8 @@ MyCopyProjecy url : [https://stoic-raman-fa645a.netlify.com/](https://stoic-rama
 - 고민했던 것들
   - state 구조 최적화 전략
   - state 가 담고 있어야 할 것들
+  - 다양한 형태의 UI를 보여주기 위한 상태구조를 잘 생각해야 함
+  - normalize, reselect 개념을 이해해야 함
 
 [https://redux.js.org/recipes/structuring-reducers/structuring-reducers](https://redux.js.org/recipes/structuring-reducers/structuring-reducers)
 
@@ -65,6 +69,7 @@ MyCopyProjecy url : [https://stoic-raman-fa645a.netlify.com/](https://stoic-rama
 - 고민했던 것들
   - 데이터 가공
   - 언제, 어디서, reselect 해야하는가?
+  - reselect 하기 위해 어떤식으로 데이터를 가공해야 하는가?
 
 [https://redux.js.org/recipes/computing-derived-data](https://redux.js.org/recipes/computing-derived-data)
 
@@ -76,6 +81,9 @@ MyCopyProjecy url : [https://stoic-raman-fa645a.netlify.com/](https://stoic-rama
 
 - 고민했던 것들
   - websoket 작동방식
+  - when i use, websoket
+  - where i use, websoket
+  - how i use, websoket
   - 데이터 처리
   - 예외처리
 
