@@ -4,6 +4,8 @@ study for redux, websocket, reselect, state structure by poliniex market copy
 
 Reference url : [https://poloniex.com/](https://poloniex.com/)
 
+MyCopyProjecy url : [https://stoic-raman-fa645a.netlify.com/](https://stoic-raman-fa645a.netlify.com/)
+
 # start
 
 > `npm install`
