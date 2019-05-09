@@ -9,7 +9,7 @@ const Banner = () => {
   return (
     <section className={cx("container")}>
       <article>
-        <h1 className={cx("title")}>MarketList</h1>
+        <h1 className={cx("title")}>Poloniex Exchange copy</h1>
       </article>
     </section>
   );
